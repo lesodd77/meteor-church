@@ -1,0 +1,68 @@
+{
+  "name": "church-app",
+  "version": "1.0.0",
+  "description": "church app build with meteor, react, mongodb, nodejs, tailwindcs.",
+  "scripts": {
+    "start": "meteor run --exclude-archs web.browser.legacy,web.cordova",
+    "eslint": "eslint . --fix",
+    "prettier": "prettier --write \"**/*.js\"",
+    "check": "npm run eslint && npm run prettier",
+    "visualize": "meteor --production --extra-packages bundle-visualizer"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.15.4",
+    "@chakra-ui/icons": "^1.1.7",
+    "@chakra-ui/react": "^1.8.5",
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
+    "@headlessui/react": "^1.5.0",
+    "@heroicons/react": "^1.0.5",
+    "@react-icons/all-files": "^4.1.0",
+    "autoprefixer": "^10.4.0",
+    "babel-runtime": "^6.26.0",
+    "bcrypt": "^5.0.1",
+    "formik": "^2.2.9",
+    "framer-motion": "^4.1.17",
+    "history": "^5.2.0",
+    "meteor-node-stubs": "^1.1.0",
+    "postcss": "^8.3.11",
+    "postcss-load-config": "^3.1.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-icons": "^4.3.1",
+    "react-router-dom": "^6.2.1",
+    "tailwindcss": "^2.2.19",
+    "yup": "^0.32.11"
+  },
+  "devDependencies": {
+    "@quave/eslint-config-quave": "^1.0.7",
+    "@types/meteor": "^2.0.4",
+    "@types/mocha": "^8.2.3",
+    "@types/meteor-mdg-validated-method": "^1.2.3",
+    "@types/meteor-astronomy": "^2.6.6"
+  },
+  "meteor": {
+    "mainModule": {
+      "client": "app/main.client.jsx",
+      "server": "app/main.server.js"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "meteor npm test && lint-staged",
+      "post-commit": "git update-index --again"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "@quave/quave"
+    ]
+  }
+}
